@@ -78,3 +78,23 @@
         return lastGuy > nextGuy ? -1 : 1;
     });
     console.table(oldest);
+
+    // Used wikipedia for list of streets with de in name
+    const category = document.querySelector('./mw-category');
+    const links = [...(category.querySelectorAll('a'))];
+    // must use spread or else it will return nodelist that cant use map()
+
+    const de = links
+    .map(link => link.textContent)
+    .filter(streetName => streetName.includes('de'));
+
+    // sort people by last name
+    const alpha = people.sort((lastOne, nextOne) => {
+        const [aLast, aFirst] = lastOne.split(', ');
+        const [bLast, bFirst] = nextOne.split(', ');
+        return aLast > bLast ? 1 : -1;
+    });
+
+
+    // reduce exercise with summing up instances of each
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];

@@ -62,4 +62,19 @@
     //     console.table(ordered);
 
     // cleaner function using ternary operators
-    const ordered = inventory.sort((a,b) => a.year > b.year ? 1 : -1);
+    const ordered = inventors.sort((a,b) => a.year > b.year ? 1 : -1);
+
+    // Array using reduce, how many years did the inventors live?
+    const totalYears = inventors.reduce((total, inventor) => {
+        return total + (inventor.passed - inventor.year);
+    }, 0);
+    // insert 0 at end to give a total to start on
+    console.log(totalYears);
+
+    // Sort by years lived
+    const oldest = inventors.sort(function(a,b) {
+        const lastGuy = a.passed - a.year;
+        const nextGuy = b.passed - b.year;
+        return lastGuy > nextGuy ? -1 : 1;
+    });
+    console.table(oldest);
